@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+    command="node app.js"
+else
+    command=$@
+fi
+
+docker build -t swagger-test .
+docker run -i -v "${PWD}":/code -p 80:10010 -t swagger-test $command
